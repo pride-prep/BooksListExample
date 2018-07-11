@@ -16,7 +16,7 @@ var books: [Book] = []
 
 // Fill our array with all of the books in the book database
 for book in bookData {
-    var newBook: Book = Book() // create a new book object
+    let newBook: Book = Book() // create a new book object
     // convert the dictionary format to object
     for (key, value) in book {
         newBook.convertDictToObj(key: key, value: value)
@@ -34,8 +34,8 @@ for book in bookData {
  */ //////////////////////////////
 
 var isFinished = false // continue interface until users opts out
-var input: String // container for input
-var menuOption: Int // variable for options
+var input = "" // container for input
+var menuOption: Int? // variable for options
 
 print("Welcome to the PRIDE Prep Library!")
 
@@ -48,22 +48,18 @@ while !isFinished {
     print("Option: ", terminator: "")
     input = readLine()!
     // make sure that the user input is only a number
-    if Double(input) != nil {
-        menuOption = Int(input)!
-        // ensure user only selects options 1-3
-        switch menuOption {
-        case 1: searchBooks() // search books
-        case 2: // show all books
-            for book in books {
-                print(book.getInfo())
-            }
-        case 3: // exit program
-            isFinished = true
-            print("Cya later!")
-        default: print("Not a valid option")
+    menuOption = Int(input)
+    // ensure user only selects options 1-3
+    switch menuOption {
+    case 1: searchBooks() // search books
+    case 2: // show all books
+        for book in books {
+            print(book.getInfo())
         }
-    } else {
-        print("Please enter a valid number")
+    case 3: // exit program
+        isFinished = true
+        print("Cya later!")
+    default: print("Not a valid option")
     }
     print()
 }
