@@ -11,8 +11,8 @@ import Foundation
 // function for searching books under certain criteria based on user input
 func searchBooks() {
     var isFinished = false
-    var input: String
-    var menuOption: Int
+    var input = ""
+    var menuOption: Int?
     // let user access submenu until they wish to exit
     while !isFinished {
         // print submenu
@@ -25,34 +25,34 @@ func searchBooks() {
         print("Option: ", terminator: "")
         input = readLine()!
         // check if submenu option is a number
-        if Double(input) != nil {
-            menuOption = Int(input)!
-            // search the books by criteria
-            switch menuOption {
-            case 1: // prompt user for author name
-                print("Enter author name: ", terminator: "")
-                input = readLine()!
-                searchBooksByCriteria(criteria: "author", data: input)
-            case 2: // prompt user for book name
-                print("Enter book name: ", terminator: "")
-                input = readLine()!
-                searchBooksByCriteria(criteria: "name", data: input)
-            case 3: // return list of books that are in stock
-                searchBooksByCriteria(criteria: "inStock", data: "")
-            case 4:
-                // we will need to get the min and max range of the price search
-                var range: (Double, Double)
-                print("Enter min price range: ", terminator: "")
-                range.0 = Double(readLine()!)!
-                print("Enter max price range: ", terminator: "")
-                range.1 = Double(readLine()!)!
-                searchBooksByCriteria(criteria: "range", data: range)
-            case 5: isFinished = true // return back to main menu
-            default:
-                print("Not a valid option")
+        menuOption = Int(input)
+        // search the books by criteria
+        switch menuOption {
+        case 1: // prompt user for author name
+            print("Enter author name: ", terminator: "")
+            if let io = readLine() as String? {
+                input = io
             }
-        } else {
-            print("Please enter a valid option number")
+            searchBooksByCriteria(criteria: "author", data: input)
+        case 2: // prompt user for book name
+            print("Enter book name: ", terminator: "")
+            if let io = readLine() as String? {
+                input = io
+            }
+            searchBooksByCriteria(criteria: "name", data: input)
+        case 3: // return list of books that are in stock
+            searchBooksByCriteria(criteria: "inStock", data: "")
+        case 4:
+            // we will need to get the min and max range of the price search
+            var range: (Double, Double)
+            print("Enter min price range: ", terminator: "")
+            range.0 = Double(readLine()!)!
+            print("Enter max price range: ", terminator: "")
+            range.1 = Double(readLine()!)!
+            searchBooksByCriteria(criteria: "range", data: range)
+        case 5: isFinished = true // return back to main menu
+        default:
+            print("Not a valid option")
         }
     }
 }
