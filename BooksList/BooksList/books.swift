@@ -11,16 +11,16 @@ import Foundation
 // Book Class that contain properties of a book
 class Book {
     // properties
-    var id: String = ""
+    var id = ""
     var cat: [String] = []
-    var name: String = ""
-    var author: String = ""
-    var series_t: String = ""
-    var sequence_i: Int = 0
-    var genre_s: String = ""
-    var inStock: Bool = false
-    var price: Double = 0.0
-    var pages_i: Int = 0
+    var name = ""
+    var author = ""
+    var series_t = ""
+    var sequence_i = 0
+    var genre_s = ""
+    var inStock = false
+    var price = 0.0
+    var pages_i = 0
     // basic constructor
     init() {}
     // initializer for all properties
@@ -52,16 +52,46 @@ class Book {
 
     func convertDictToObj(key: String, value: Any) {
         switch key {
-        case "id": id = value as! String
-        case "cat": cat = value as! [String]
-        case "name": name = value as! String
-        case "author": author = value as! String
-        case "series_t": series_t = value as! String
-        case "sequence_i": sequence_i = value as! Int
-        case "genre_s": genre_s = value as! String
-        case "inStock": inStock = value as! Bool
-        case "price": price = value as! Double
-        case "pages_i": pages_i = value as! Int
+        case "id":
+            if let _ = value as? String {
+                id = value as! String
+            }
+        case "cat":
+            if let _ = value as? [String] {
+                cat = value as! [String]
+            }
+        case "name":
+            if let _ = value as? String {
+                name = value as! String
+            }
+        case "author":
+            if let _ = value as? String {
+                author = value as! String
+            }
+        case "series_t":
+            if let _ = value as? String {
+                series_t = value as! String
+            }
+        case "sequence_i":
+            if let _ = value as? Int {
+                sequence_i = value as! Int
+            }
+        case "genre_s":
+            if let _ = value as? String {
+                genre_s = value as! String
+            }
+        case "inStock":
+            if let _ = value as? Bool {
+                inStock = value as! Bool
+            }
+        case "price":
+            if let _ = value as? Double {
+                price = value as! Double
+            }
+        case "pages_i":
+            if let _ = value as? Int {
+                pages_i = value as! Int
+            }
         default: print("There is no key")
         }
     }
